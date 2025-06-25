@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ChillPath</title>
+</head>
+<body>
+  <h1>ChillPath – Information System</h1>
+
+  <section>
+    <h2>Add Product</h2>
+    <form id="productForm">
+      <input type="text" id="productName" placeholder="Product Name" required />
+      <input type="text" id="productUnit" placeholder="Unit (e.g. Litre)" required />
+      <input type="text" id="productShelfLife" placeholder="Shelf Life (e.g. 3 days)" required />
+      <button type="submit">Add Product</button>
+    </form>
+    <div id="productMsg"></div>
+  </section>
+
+  <hr />
+
+<section>
+  <h2>Add Outlet</h2>
+  <form id="outletForm">
+    <input type="text" id="outletName" placeholder="Outlet Name" required />
+    <input type="text" id="outletContact" placeholder="Contact Number" required />
+    <button type="submit">Add Outlet</button>
+  </form>
+  <div id="outletMsg"></div>
+</section>
+
+<hr />
+
+<section>
+  <h2>Add Delivery</h2>
+  <form id="deliveryForm">
+    <label for="deliveryProduct">Product:</label>
+    <select id="deliveryProduct"></select>
+
+    <label for="deliveryOutlet">Outlet:</label>
+    <select id="deliveryOutlet"></select>
+
+    <label for="deliveryQuantity">Quantity:</label>
+    <input type="number" id="deliveryQuantity" required />
+
+    <label for="deliveryTemperature">Temperature (°C):</label>
+    <input type="number" id="deliveryTemperature" required />
+
+    <label for="deliveryDate">Date:</label>
+    <input type="date" id="deliveryDate" required />
+
+    <button type="submit">Add Delivery</button>
+  </form>
+
+  <div id="deliveryMsg"></div>
+</section>
+
+<hr />
+
+<section>
+  <h2>Delivery Log</h2>
+  <table id="deliveryTable" border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product ID</th>
+        <th>Outlet ID</th>
+        <th>Quantity</th>
+        <th>Date</th>
+        <th>Temperature (°C)</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="deliveryTableBody">
+      <!-- Deliveries will be added here -->
+    </tbody>
+  </table>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
