@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
   res.status(201).json({ message, delivery: newDelivery });
 });
 
-// DELETE /api/deliveries/:id
+// DEL /api/deliveries/:id
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   let deliveries = loadDeliveries();
