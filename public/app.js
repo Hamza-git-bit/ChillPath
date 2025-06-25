@@ -51,7 +51,7 @@ async function loadDropdowns() {
       outletSelect.appendChild(option);
     });
   } catch (err) {
-    console.error('Failed to load dropdowns', err);
+    console.error('Failed dropdowns', err);
   }
 }
 
