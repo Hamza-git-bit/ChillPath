@@ -6,7 +6,7 @@ const PORT = 3000;
 // Enable JSON parsing for API
 app.use(express.json());
 
-// Serve static files from /public (your frontend)
+// static files from /public (your frontend)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Import and mount products API routes
