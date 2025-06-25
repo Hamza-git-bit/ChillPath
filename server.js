@@ -9,7 +9,7 @@ app.use(express.json());
 // Serve static files from /public (your frontend)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Import and mount the products API routes
+// Import and mount products API routes
 const productRoutes = require('./routes/products');
 app.use('/api/products', productRoutes);
 
