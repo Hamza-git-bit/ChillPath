@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const productRoutes = require('./routes/products');
 app.use('/api/products', productRoutes);
 
-// Add a catch-all root route (optional, but helpful)
+// Add catch-all root route (optional, but helpful)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
