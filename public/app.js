@@ -1,3 +1,32 @@
+// ===== PRODUCT FORM =====
+const productForm = document.getElementById('productForm');
+
+if (productForm) {
+  productForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('productName').value;
+    const unit = document.getElementById('productUnit').value;
+    const shelfLife = document.getElementById('productShelfLife').value;
+
+    try {
+      const response = await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, unit, shelfLife })
+      });
+
+      const result = await response.json();
+      document.getElementById('productMsg').innerText = result.message || 'Product added.';
+      this.reset();
+    } catch (error) {
+      console.error('Error adding product:', error);
+      document.getElementById('productMsg').innerText = 'Failed to add product.';
+    }
+  });
+}
+
+// ===== OUTLET FORM =====
 const outletForm = document.getElementById('outletForm');
 
 if (outletForm) {
@@ -24,6 +53,7 @@ if (outletForm) {
   });
 }
 
+// ===== LOAD DROPDOWNS =====
 async function loadDropdowns() {
   const productSelect = document.getElementById('deliveryProduct');
   const outletSelect = document.getElementById('deliveryOutlet');
@@ -54,9 +84,9 @@ async function loadDropdowns() {
     console.error('Failed dropdowns', err);
   }
 }
-
 loadDropdowns();
 
+// ===== DELIVERY FORM =====
 const deliveryForm = document.getElementById('deliveryForm');
 
 if (deliveryForm) {
@@ -87,6 +117,8 @@ if (deliveryForm) {
     }
   });
 }
+
+// ===== LOAD DELIVERIES =====
 async function loadDeliveries() {
   const tableBody = document.getElementById('deliveryTableBody');
   if (!tableBody) return;
@@ -101,8 +133,7 @@ async function loadDeliveries() {
       const tr = document.createElement('tr');
 
       const temp = delivery.temperature;
-      const status =
-        temp < 2 || temp > 8 ? 'At Risk' : 'OK';
+      const status = temp < 2 || temp > 8 ? 'At Risk' : 'OK';
 
       tr.innerHTML = `
         <td>${delivery.id}</td>
@@ -112,10 +143,9 @@ async function loadDeliveries() {
         <td>${delivery.date}</td>
         <td>${delivery.temperature}</td>
         <td>${status}</td>
-<td><button data-id="${delivery.id}" class="deleteBtn">Delete</button></td>
+        <td><button data-id="${delivery.id}" class="deleteBtn">Delete</button></td>
       `;
 
-      // Optional: color risky rows
       if (status === 'At Risk') {
         tr.style.color = 'red';
       }
@@ -126,6 +156,9 @@ async function loadDeliveries() {
     console.error('Error loading deliveries:', err);
   }
 }
+loadDeliveries();
+
+// ===== DELETE BUTTON HANDLER =====
 document.addEventListener('click', async function (e) {
   if (e.target.classList.contains('deleteBtn')) {
     const id = e.target.getAttribute('data-id');
@@ -143,12 +176,22 @@ document.addEventListener('click', async function (e) {
   }
 });
 
-loadDeliveries();
+// ===== CLEAR TABLE VIEW BUTTON =====
 const clearBtn = document.getElementById('clearTableBtn');
 
 if (clearBtn) {
   clearBtn.addEventListener('click', () => {
     const tableBody = document.getElementById('deliveryTableBody');
     tableBody.innerHTML = '';
+  });
+}
+
+// ===== CLEAR PRODUCT VIEW BUTTON =====
+const clearProductBtn = document.getElementById('clearProductListBtn');
+
+if (clearProductBtn) {
+  clearProductBtn.addEventListener('click', () => {
+    const productList = document.getElementById('productList'); // Replace with actual ID
+    if (productList) productList.innerHTML = '';
   });
 }
