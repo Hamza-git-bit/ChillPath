@@ -144,3 +144,11 @@ document.addEventListener('click', async function (e) {
 });
 
 loadDeliveries();
+const clearBtn = document.getElementById('clearTableBtn');
+
+if (clearBtn) {
+  clearBtn.addEventListener('click', () => {
+    const tableBody = document.getElementById('deliveryTableBody');
+    tableBody.innerHTML = '';
+  });
+}
