@@ -28,5 +28,11 @@
     "name": "Milk",
     "unit": "Litre",
     "shelfLife": "3"
+  },
+  {
+    "id": 6,
+    "name": "Milk",
+    "unit": "Litre",
+    "shelfLife": "3"
   }
 ]

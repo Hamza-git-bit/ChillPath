@@ -9,13 +9,13 @@
 
   <section>
     <h2>Add Product</h2>
-    <button id="clearProductListBtn">Clear Product List View</button>
     <form id="productForm">
       <input type="text" id="productName" placeholder="Product Name" required />
       <input type="text" id="productUnit" placeholder="Unit (e.g. Litre)" required />
       <input type="text" id="productShelfLife" placeholder="Shelf Life (e.g. 3 days)" required />
       <button type="submit">Add Product</button>
     </form>
+    <button id="clearProductListBtn">Clear Product List View</button>
     <div id="productMsg"></div>
     <ul id="productList"></ul>
   </section>
@@ -29,7 +29,10 @@
       <input type="text" id="outletContact" placeholder="Contact Number" required />
       <button type="submit">Add Outlet</button>
     </form>
+    <button id="clearOutletListBtn">Clear Outlet List View</button>
+
     <div id="outletMsg"></div>
+    <ul id="outletList"></ul>
   </section>
 
   <hr />
@@ -54,6 +57,7 @@
 
       <button type="submit">Add Delivery</button>
     </form>
+    <button id="clearDeliveryFormBtn">Clear Delivery Form</button>
     <div id="deliveryMsg"></div>
   </section>
 

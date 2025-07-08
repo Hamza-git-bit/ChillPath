@@ -195,3 +195,22 @@ if (clearProductBtn) {
     if (productList) productList.innerHTML = '';
   });
 }
+// ===== CLEAR Outlet VIEW BUTTON =====
+const clearOutletBtn = document.getElementById('clearOutletListBtn');
+
+if (clearOutletBtn) {
+  clearOutletBtn.addEventListener('click', () => {
+    const outletList = document.getElementById('outletList');
+    if (outletList) outletList.innerHTML = '';
+  });
+}
+// ===== CLEAR Delivery VIEW BUTTON =====
+const clearDeliveryFormBtn = document.getElementById('clearDeliveryFormBtn');
+
+if (clearDeliveryFormBtn) {
+  clearDeliveryFormBtn.addEventListener('click', () => {
+    const deliveryForm = document.getElementById('deliveryForm');
+    if (deliveryForm) deliveryForm.reset();
+  });
+}
+

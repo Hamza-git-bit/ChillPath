@@ -18,5 +18,15 @@
     "id": 4,
     "name": "Test Store",
     "contact": "03455591282"
+  },
+  {
+    "id": 5,
+    "name": "Hamza",
+    "contact": "03455591282"
+  },
+  {
+    "id": 6,
+    "name": "Hamza",
+    "contact": "03455591282"
   }
 ]
