@@ -17,70 +17,68 @@
       <button type="submit">Add Product</button>
     </form>
     <div id="productMsg"></div>
+    <ul id="productList"></ul>
   </section>
 
   <hr />
 
-<section>
-  <h2>Add Outlet</h2>
-  <form id="outletForm">
-    <input type="text" id="outletName" placeholder="Outlet Name" required />
-    <input type="text" id="outletContact" placeholder="Contact Number" required />
-    <button type="submit">Add Outlet</button>
-  </form>
-  <div id="outletMsg"></div>
-</section>
+  <section>
+    <h2>Add Outlet</h2>
+    <form id="outletForm">
+      <input type="text" id="outletName" placeholder="Outlet Name" required />
+      <input type="text" id="outletContact" placeholder="Contact Number" required />
+      <button type="submit">Add Outlet</button>
+    </form>
+    <div id="outletMsg"></div>
+  </section>
 
-<hr />
+  <hr />
 
-<section>
-  <h2>Add Delivery</h2>
-  <form id="deliveryForm">
-    <label for="deliveryProduct">Product:</label>
-    <select id="deliveryProduct"></select>
+  <section>
+    <h2>Add Delivery</h2>
+    <form id="deliveryForm">
+      <label for="deliveryProduct">Product:</label>
+      <select id="deliveryProduct"></select>
 
-    <label for="deliveryOutlet">Outlet:</label>
-    <select id="deliveryOutlet"></select>
+      <label for="deliveryOutlet">Outlet:</label>
+      <select id="deliveryOutlet"></select>
 
-    <label for="deliveryQuantity">Quantity:</label>
-    <input type="number" id="deliveryQuantity" required />
+      <label for="deliveryQuantity">Quantity:</label>
+      <input type="number" id="deliveryQuantity" required />
 
-    <label for="deliveryTemperature">Temperature (°C):</label>
-    <input type="number" id="deliveryTemperature" required />
+      <label for="deliveryTemperature">Temperature (°C):</label>
+      <input type="number" id="deliveryTemperature" required />
 
-    <label for="deliveryDate">Date:</label>
-    <input type="date" id="deliveryDate" required />
+      <label for="deliveryDate">Date:</label>
+      <input type="date" id="deliveryDate" required />
 
-    <button type="submit">Add Delivery</button>
-  </form>
+      <button type="submit">Add Delivery</button>
+    </form>
+    <div id="deliveryMsg"></div>
+  </section>
 
-  <div id="deliveryMsg"></div>
-</section>
+  <hr />
 
-<hr />
+  <section>
+    <h2>Delivery Log</h2>
+    <button id="clearTableBtn">Clear Table View</button>
+    <table id="deliveryTable" border="1" cellpadding="6">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product ID</th>
+          <th>Outlet ID</th>
+          <th>Quantity</th>
+          <th>Date</th>
+          <th>Temperature (°C)</th>
+          <th>Status</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="deliveryTableBody"></tbody>
+    </table>
+  </section>
 
-<section>
-  <h2>Delivery Log</h2>
-<button id="clearTableBtn">Clear Table View</button>
-  <table id="deliveryTable" border="1" cellpadding="6">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Product ID</th>
-        <th>Outlet ID</th>
-        <th>Quantity</th>
-        <th>Date</th>
-        <th>Temperature (°C)</th>
-        <th>Status</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody id="deliveryTableBody">
-      <!-- Deliveries will be added here -->
-    </tbody>
-  </table>
-</section>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
