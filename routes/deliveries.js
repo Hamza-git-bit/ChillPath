@@ -1,19 +1,6 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const { loadData, saveData } = require('../utils/fileStorage');
 const router = express.Router();
-
-const filePath = path.join(__dirname, '../data/deliveries.json');
-
-function loadDeliveries() {
-  if (!fs.existsSync(filePath)) return [];
-  const data = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(data);
-}
-
-function saveDeliveries(deliveries) {
-  fs.writeFileSync(filePath, JSON.stringify(deliveries, null, 2));
-}
 
 // GET /api/deliveries
 router.get('/', (req, res) => {
@@ -36,7 +23,7 @@ router.post('/', (req, res) => {
     return res.status(400).json({ message: 'All fields are required.' });
   }
 
-  const deliveries = loadDeliveries();
+  const deliveries = loadData('deliveries.json');
 
   const newDelivery = {
     id: deliveries.length > 0 ? deliveries[deliveries.length - 1].id + 1 : 1,
@@ -48,16 +35,16 @@ router.post('/', (req, res) => {
   };
 
   deliveries.push(newDelivery);
-  saveDeliveries(deliveries);
+  saveData('deliveries.json', deliveries);
 
   let message = 'Delivery recorded.';
-
   if (temperature < 2 || temperature > 8) {
     message += ' Temperature out of range.';
   }
 
   res.status(201).json({ message, delivery: newDelivery });
 });
+
 // PUT /api/deliveries/:id
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
