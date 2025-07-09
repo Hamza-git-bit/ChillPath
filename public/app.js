@@ -136,15 +136,19 @@ async function loadDeliveries() {
       const status = temp < 2 || temp > 8 ? 'At Risk' : 'OK';
 
       tr.innerHTML = `
-        <td>${delivery.id}</td>
-        <td>${delivery.productId}</td>
-        <td>${delivery.outletId}</td>
-        <td>${delivery.quantity}</td>
-        <td>${delivery.date}</td>
-        <td>${delivery.temperature}</td>
-        <td>${status}</td>
-        <td><button data-id="${delivery.id}" class="deleteBtn">Delete</button></td>
-      `;
+  <td>${delivery.id}</td>
+  <td>${delivery.productId}</td>
+  <td>${delivery.outletId}</td>
+  <td>${delivery.quantity}</td>
+  <td>${delivery.date}</td>
+  <td>${delivery.temperature}</td>
+  <td>${status}</td>
+  <td>
+    <button data-id="${delivery.id}" class="editBtn">Edit</button>
+    <button data-id="${delivery.id}" class="deleteBtn">Delete</button>
+  </td>
+`;
+
 
       if (status === 'At Risk') {
         tr.style.color = 'red';
