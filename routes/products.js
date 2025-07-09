@@ -4,7 +4,8 @@ const router = express.Router();
 
 //  GET all products
 router.get('/', (req, res) => {
-  const products = loadProducts();
+const products = loadData('products.json');
+
   res.json(products);
 });
 

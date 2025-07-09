@@ -148,18 +148,15 @@ async function loadDeliveries() {
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${delivery.id}</td>
-        <td>${product ? product.name : 'Unknown Product'}</td>
-        <td>${outlet ? outlet.name : 'Unknown Outlet'}</td>
-        <td>${delivery.quantity}</td>
-        <td>${delivery.date}</td>
-        <td>${delivery.temperature}</td>
-        <td>${status}</td>
-        <td>
-          <button data-id="${delivery.id}" class="editBtn">Edit</button>
-          <button data-id="${delivery.id}" class="deleteBtn">Delete</button>
-        </td>
-      `;
+  <td>${delivery.id}</td>
+  <td>${delivery.productId}</td>
+  <td>${delivery.outletId}</td>
+  <td>${delivery.quantity}</td>
+  <td>${delivery.date}</td>
+  <td>${delivery.temperature}</td>
+  <td>${status}</td>
+  <td><button data-id="${delivery.id}" class="deleteBtn">Delete</button></td>
+`;
 
       if (status === 'At Risk') {
         tr.style.color = 'red';

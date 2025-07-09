@@ -4,7 +4,7 @@ const router = express.Router();
 
 // GET /api/deliveries
 router.get('/', (req, res) => {
-  const deliveries = loadDeliveries();
+  const deliveries = loadData('deliveries.json');
   res.json(deliveries);
 });
 
@@ -74,20 +74,18 @@ router.put('/:id', (req, res) => {
   res.json({ message: 'Delivery updated', delivery: deliveries[index] });
 });
 
-// DEL /api/deliveries/:id
 router.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  let deliveries = loadDeliveries();
+  let deliveries = loadData('deliveries.json');
 
   const index = deliveries.findIndex(d => d.id === id);
   if (index === -1) {
     return res.status(404).json({ message: 'Delivery not found' });
   }
 
-  deliveries.splice(index, 1);
-  saveDeliveries(deliveries);
-
-  res.json({ message: 'Delivery deleted' });
+  deliveries.splice(index, 1); // Remove it
+  saveData('deliveries.json', deliveries);
+  res.json({ message: 'Delivery deleted successfully' });
 });
 
 module.exports = router;
