@@ -58,6 +58,34 @@ router.post('/', (req, res) => {
 
   res.status(201).json({ message, delivery: newDelivery });
 });
+// PUT /api/deliveries/:id
+router.put('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const { productId, outletId, quantity, temperature, date } = req.body;
+
+  if (
+    !productId ||
+    !outletId ||
+    !quantity ||
+    !date ||
+    temperature === null ||
+    isNaN(temperature)
+  ) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  const deliveries = loadDeliveries();
+  const index = deliveries.findIndex(d => d.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Delivery not found.' });
+  }
+
+  deliveries[index] = { id, productId, outletId, quantity, temperature, date };
+  saveDeliveries(deliveries);
+
+  res.json({ message: 'Delivery updated', delivery: deliveries[index] });
+});
 
 // DEL /api/deliveries/:id
 router.delete('/:id', (req, res) => {
