@@ -4,7 +4,7 @@ const router = express.Router();
 
 // GET /api/outlets
 router.get('/', (req, res) => {
-  const outlets = loadOutlets();
+const outlets = loadData('outlets.json');
   res.json(outlets);
 });
 

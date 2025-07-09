@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
     return res.status(400).json({ message: 'All fields are required.' });
   }
 
-  const products = loadProducts();
+    const products = loadData('products.json');
 
   const newProduct = {
     id: products.length > 0 ? products[products.length - 1].id + 1 : 1,
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
   };
 
   products.push(newProduct);
-  saveProducts(products);
+  saveData('products.json', products);
 
   res.status(201).json({ message: 'Product added', product: newProduct });
 });
