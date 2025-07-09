@@ -1,3 +1,6 @@
+
+let editingDeliveryId = null;
+
 // ===== PRODUCT FORM =====
 const productForm = document.getElementById('productForm');
 
