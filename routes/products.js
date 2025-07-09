@@ -1,21 +1,6 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const { loadData, saveData } = require('../utils/fileStorage');
 const router = express.Router();
-
-const filePath = path.join(__dirname, '../data/products.json');
-
-//  Load products from JSON file
-function loadProducts() {
-  if (!fs.existsSync(filePath)) return [];
-  const data = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(data);
-}
-
-// Save products to JSON file
-function saveProducts(products) {
-  fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
-}
 
 //  GET all products
 router.get('/', (req, res) => {
@@ -27,6 +12,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const { name, unit, shelfLife } = req.body;
 
+// Basic validation
   if (!name || !unit || !shelfLife) {
     return res.status(400).json({ message: 'All fields are required.' });
   }
