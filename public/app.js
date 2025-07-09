@@ -127,31 +127,39 @@ async function loadDeliveries() {
   if (!tableBody) return;
 
   try {
-    const res = await fetch('/api/deliveries');
-    const deliveries = await res.json();
+    const [deliveriesRes, productsRes, outletsRes] = await Promise.all([
+      fetch('/api/deliveries'),
+      fetch('/api/products'),
+      fetch('/api/outlets')
+    ]);
 
-    tableBody.innerHTML = ''; // Clear old rows
+    const deliveries = await deliveriesRes.json();
+    const products = await productsRes.json();
+    const outlets = await outletsRes.json();
+
+    tableBody.innerHTML = '';
 
     deliveries.forEach(delivery => {
-      const tr = document.createElement('tr');
+      const product = products.find(p => p.id === delivery.productId);
+      const outlet = outlets.find(o => o.id === delivery.outletId);
 
       const temp = delivery.temperature;
       const status = temp < 2 || temp > 8 ? 'At Risk' : 'OK';
 
+      const tr = document.createElement('tr');
       tr.innerHTML = `
-  <td>${delivery.id}</td>
-  <td>${delivery.productId}</td>
-  <td>${delivery.outletId}</td>
-  <td>${delivery.quantity}</td>
-  <td>${delivery.date}</td>
-  <td>${delivery.temperature}</td>
-  <td>${status}</td>
-  <td>
-    <button data-id="${delivery.id}" class="editBtn">Edit</button>
-    <button data-id="${delivery.id}" class="deleteBtn">Delete</button>
-  </td>
-`;
-
+        <td>${delivery.id}</td>
+        <td>${product ? product.name : 'Unknown Product'}</td>
+        <td>${outlet ? outlet.name : 'Unknown Outlet'}</td>
+        <td>${delivery.quantity}</td>
+        <td>${delivery.date}</td>
+        <td>${delivery.temperature}</td>
+        <td>${status}</td>
+        <td>
+          <button data-id="${delivery.id}" class="editBtn">Edit</button>
+          <button data-id="${delivery.id}" class="deleteBtn">Delete</button>
+        </td>
+      `;
 
       if (status === 'At Risk') {
         tr.style.color = 'red';
@@ -163,8 +171,6 @@ async function loadDeliveries() {
     console.error('Error loading deliveries:', err);
   }
 }
-loadDeliveries();
-
 // ===== DELETE And Edit BUTTON HANDLER =====
 document.addEventListener('click', async function (e) {
   if (e.target.classList.contains('deleteBtn')) {
