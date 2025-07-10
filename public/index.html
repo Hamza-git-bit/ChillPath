@@ -65,18 +65,20 @@
   <section>
     <h2>Delivery Log</h2>
     <button id="clearTableBtn">Clear Table View</button>
+
+    <label for="filterProduct">Filter by Product:</label>
+    <select id="filterProduct">
+      <option value="">All</option>
+    </select>
+
+    <label for="startDate">From:</label>
+    <input type="date" id="startDate" />
+
+    <label for="endDate">To:</label>
+    <input type="date" id="endDate" />
+    <button id="applyDateFilter">Filter</button>
+
     <table id="deliveryTable" border="1" cellpadding="6">
-      <label for="filterProduct">Filter by Product:</label>
-      <label for="startDate">From:</label>
-<input type="date" id="startDate" />
-
-<label for="endDate">To:</label>
-<input type="date" id="endDate" />
-<button id="applyDateFilter">Filter</button>
-
-<select id="filterProduct">
-  <option value="">All</option>
-</select>
 
       <thead>
         <tr>
