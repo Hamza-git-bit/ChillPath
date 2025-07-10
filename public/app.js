@@ -218,3 +218,13 @@ document.getElementById('clearOutletListBtn')?.addEventListener('click', () => {
 document.getElementById('clearDeliveryFormBtn')?.addEventListener('click', () => {
   deliveryForm?.reset();
 });
+// ===== DATE RANGE FILTER =====
+const startDateInput = document.getElementById('startDate');
+const endDateInput = document.getElementById('endDate');
+const filterBtn = document.getElementById('applyDateFilter');
+
+if (filterBtn) {
+  filterBtn.addEventListener('click', () => {
+    loadDeliveries();
+  });
+}
