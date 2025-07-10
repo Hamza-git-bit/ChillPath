@@ -64,11 +64,11 @@
     "temperature": 8
   },
   {
-    "id": 11,
+    "id": 12,
     "productId": 1,
-    "outletId": 1,
-    "quantity": 5,
-    "date": "1111-11-11",
-    "temperature": 6
+    "outletId": 12,
+    "quantity": 7,
+    "date": "0077-07-07",
+    "temperature": 99
   }
 ]
