@@ -46,14 +46,20 @@ router.post('/', (req, res) => {
 });
 
 // PUT /api/deliveries/:id
-// PUT /api/deliveries/:id
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { productId, outletId, quantity, temperature, date } = req.body;
 
-  if (!productId || !outletId || !quantity || !temperature || !date) {
-    return res.status(400).json({ message: 'All fields are required.' });
-  }
+if (
+  productId == null ||
+  outletId == null ||
+  quantity == null ||
+  date == null ||
+  temperature == null ||
+  isNaN(temperature)
+) {
+  return res.status(400).json({ message: 'All fields are required.' });
+}
 
   const deliveries = loadData('deliveries.json');
   const index = deliveries.findIndex(d => d.id === id);
@@ -74,4 +80,5 @@ router.put('/:id', (req, res) => {
   saveData('deliveries.json', deliveries);
   res.json({ message: 'Delivery updated', delivery: deliveries[index] });
 });
+
 module.exports = router;
