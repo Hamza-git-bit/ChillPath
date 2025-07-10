@@ -46,46 +46,32 @@ router.post('/', (req, res) => {
 });
 
 // PUT /api/deliveries/:id
+// PUT /api/deliveries/:id
 router.put('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { productId, outletId, quantity, temperature, date } = req.body;
 
-  if (
-    !productId ||
-    !outletId ||
-    !quantity ||
-    !date ||
-    temperature === null ||
-    isNaN(temperature)
-  ) {
+  if (!productId || !outletId || !quantity || !temperature || !date) {
     return res.status(400).json({ message: 'All fields are required.' });
   }
 
-  const deliveries = loadDeliveries();
+  const deliveries = loadData('deliveries.json');
   const index = deliveries.findIndex(d => d.id === id);
 
   if (index === -1) {
     return res.status(404).json({ message: 'Delivery not found.' });
   }
 
-  deliveries[index] = { id, productId, outletId, quantity, temperature, date };
-  saveDeliveries(deliveries);
+  deliveries[index] = {
+    id,
+    productId,
+    outletId,
+    quantity,
+    temperature,
+    date
+  };
 
+  saveData('deliveries.json', deliveries);
   res.json({ message: 'Delivery updated', delivery: deliveries[index] });
 });
-
-router.delete('/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  let deliveries = loadData('deliveries.json');
-
-  const index = deliveries.findIndex(d => d.id === id);
-  if (index === -1) {
-    return res.status(404).json({ message: 'Delivery not found' });
-  }
-
-  deliveries.splice(index, 1); // Remove it
-  saveData('deliveries.json', deliveries);
-  res.json({ message: 'Delivery deleted successfully' });
-});
-
 module.exports = router;

@@ -70,5 +70,13 @@
     "quantity": 7,
     "date": "0077-07-07",
     "temperature": 99
+  },
+  {
+    "id": 13,
+    "productId": 1,
+    "outletId": 12,
+    "quantity": 7,
+    "date": "0007-07-07",
+    "temperature": 7
   }
 ]

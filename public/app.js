@@ -18,6 +18,7 @@ if (productForm) {
       const result = await response.json();
       document.getElementById('productMsg').innerText = result.message || 'Product added.';
       this.reset();
+  
     } catch (error) {
       console.error('Error adding product:', error);
       document.getElementById('productMsg').innerText = 'Failed to add product.';
@@ -122,6 +123,7 @@ const response = await fetch(url, {
       const result = await response.json();
       document.getElementById('deliveryMsg').innerText = result.message || 'Delivery recorded.';
       this.reset();
+      editingDeliveryId = null;
       loadDeliveries();
     } catch (err) {
       console.error('Failed to add delivery:', err);
