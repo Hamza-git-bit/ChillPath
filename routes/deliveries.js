@@ -80,5 +80,19 @@ if (
   saveData('deliveries.json', deliveries);
   res.json({ message: 'Delivery updated', delivery: deliveries[index] });
 });
+// DELETE /api/deliveries/:id
+router.delete('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const deliveries = loadData('deliveries.json');
+  const index = deliveries.findIndex(d => d.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Delivery not found.' });
+  }
+
+  deliveries.splice(index, 1);
+  saveData('deliveries.json', deliveries);
+  res.json({ message: 'Delivery deleted' });
+});
 
 module.exports = router;
