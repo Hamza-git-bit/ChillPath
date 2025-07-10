@@ -214,6 +214,26 @@ document.addEventListener('click', async function (e) {
       console.error('Delete failed:', err);
     }
   }
+  if (e.target.classList.contains('editBtn')) {
+  const id = e.target.getAttribute('data-id');
+
+  try {
+    const res = await fetch('/api/deliveries');
+    const data = await res.json();
+    const delivery = data.find(d => d.id == id);
+    if (!delivery) return;
+
+    document.getElementById('deliveryProduct').value = delivery.productId;
+    document.getElementById('deliveryOutlet').value = delivery.outletId;
+    document.getElementById('deliveryQuantity').value = delivery.quantity;
+    document.getElementById('deliveryTemperature').value = delivery.temperature;
+    document.getElementById('deliveryDate').value = delivery.date;
+
+    editingDeliveryId = delivery.id;
+  } catch (err) {
+    console.error('Edit failed:', err);
+  }
+}
 });
 
 // ===== CLEAR BUTTONS =====
