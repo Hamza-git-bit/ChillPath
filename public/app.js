@@ -144,6 +144,19 @@ async function loadDeliveries() {
     const outlets = await outletsRes.json();
     let deliveries = await deliveriesRes.json();
 
+    let filteredDeliveries = deliveries;
+
+// Apply date filter
+const start = startDateInput?.value;
+const end = endDateInput?.value;
+
+if (start) {
+  filteredDeliveries = filteredDeliveries.filter(d => new Date(d.date) >= new Date(start));
+}
+if (end) {
+  filteredDeliveries = filteredDeliveries.filter(d => new Date(d.date) <= new Date(end));
+}
+
     // Apply filter
     if (selectedProductId) {
       deliveries = deliveries.filter(d => d.productId == selectedProductId);
