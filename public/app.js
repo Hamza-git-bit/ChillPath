@@ -127,43 +127,48 @@ async function loadDeliveries() {
   if (!tableBody) return;
 
   try {
-    const [deliveriesRes, productsRes, outletsRes] = await Promise.all([
-      fetch('/api/deliveries'),
-      fetch('/api/products'),
-      fetch('/api/outlets')
-    ]);
+    const [productsRes, outletsRes, deliveriesRes] = await Promise.all([
+  fetch('/api/products'),
+  fetch('/api/outlets'),
+  fetch('/api/deliveries')
+]);
 
-    const deliveries = await deliveriesRes.json();
-    const products = await productsRes.json();
-    const outlets = await outletsRes.json();
+const products = await productsRes.json();
+const outlets = await outletsRes.json();
+const deliveries = await deliveriesRes.json();
 
     tableBody.innerHTML = '';
 
     deliveries.forEach(delivery => {
-      const product = products.find(p => p.id === delivery.productId);
-      const outlet = outlets.find(o => o.id === delivery.outletId);
+  const tr = document.createElement('tr');
 
-      const temp = delivery.temperature;
-      const status = temp < 2 || temp > 8 ? 'At Risk' : 'OK';
+  // Find product and outlet details
+  const product = products.find(p => p.id === delivery.productId);
+  const outlet = outlets.find(o => o.id === delivery.outletId);
 
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-  <td>${delivery.id}</td>
-  <td>${delivery.productId}</td>
-  <td>${delivery.outletId}</td>
-  <td>${delivery.quantity}</td>
-  <td>${delivery.date}</td>
-  <td>${delivery.temperature}</td>
-  <td>${status}</td>
-  <td><button data-id="${delivery.id}" class="deleteBtn">Delete</button></td>
-`;
+  const productName = product ? product.name : `ID ${delivery.productId}`;
+  const outletName = outlet ? outlet.name : `ID ${delivery.outletId}`;
+  const temp = delivery.temperature;
+  const status = temp < 2 || temp > 8 ? 'At Risk' : 'OK';
 
-      if (status === 'At Risk') {
-        tr.style.color = 'red';
-      }
+  tr.innerHTML = `
+    <td>${delivery.id}</td>
+    <td>${productName}</td>
+    <td>${outletName}</td>
+    <td>${delivery.quantity}</td>
+    <td>${delivery.date}</td>
+    <td>${delivery.temperature}</td>
+    <td>${status}</td>
+    <td><button data-id="${delivery.id}" class="deleteBtn">Delete</button></td>
+  `;
 
-      tableBody.appendChild(tr);
-    });
+  if (status === 'At Risk') {
+    tr.style.color = 'red';
+  }
+
+  tableBody.appendChild(tr);
+});
+
   } catch (err) {
     console.error('Error loading deliveries:', err);
   }

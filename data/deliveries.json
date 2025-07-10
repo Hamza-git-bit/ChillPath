@@ -46,5 +46,13 @@
     "quantity": 8,
     "date": "0005-05-05",
     "temperature": 6
+  },
+  {
+    "id": 9,
+    "productId": 1,
+    "outletId": 5,
+    "quantity": 55,
+    "date": "3333-03-31",
+    "temperature": 4
   }
 ]
