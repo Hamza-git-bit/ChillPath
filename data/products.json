@@ -64,5 +64,11 @@
     "name": "Milk",
     "unit": "Litre",
     "shelfLife": "2"
+  },
+  {
+    "id": 12,
+    "name": "Yogurt",
+    "unit": "Litre",
+    "shelfLife": "7"
   }
 ]
