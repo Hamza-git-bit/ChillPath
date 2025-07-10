@@ -128,6 +128,7 @@ async function loadDeliveries() {
 
   try {
     const [productsRes, outletsRes, deliveriesRes] = await Promise.all([
+
   fetch('/api/products'),
   fetch('/api/outlets'),
   fetch('/api/deliveries')
@@ -136,6 +137,7 @@ async function loadDeliveries() {
 const products = await productsRes.json();
 const outlets = await outletsRes.json();
 const deliveries = await deliveriesRes.json();
+deliveries.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     tableBody.innerHTML = '';
 
