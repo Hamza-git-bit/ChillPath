@@ -89,7 +89,7 @@ async function loadDropdowns() {
       outlets.forEach(o => {
         const option = document.createElement('option');
         option.value = o.id;
-        option.textContent = o.name;
+        option.textContent = `${p.name} (${p.unit})`;
         outletSelect.appendChild(option);
       });
     }

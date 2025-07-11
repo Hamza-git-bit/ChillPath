@@ -32,14 +32,6 @@
     "temperature": 5
   },
   {
-    "id": 7,
-    "productId": 1,
-    "outletId": 1,
-    "quantity": 7,
-    "date": "77777-06-06",
-    "temperature": 5
-  },
-  {
     "id": 8,
     "productId": 1,
     "outletId": 1,
@@ -54,14 +46,6 @@
     "quantity": 55,
     "date": "3333-03-31",
     "temperature": 4
-  },
-  {
-    "id": 10,
-    "productId": 1,
-    "outletId": 1,
-    "quantity": 8,
-    "date": "7777-07-07",
-    "temperature": 8
   },
   {
     "id": 12,
@@ -96,19 +80,27 @@
     "temperature": 5
   },
   {
-    "id": 16,
-    "productId": 1,
-    "outletId": 1,
-    "quantity": 4,
-    "temperature": 1,
-    "date": "0004-04-04"
-  },
-  {
     "id": 17,
     "productId": 1,
     "outletId": 1,
     "quantity": 6,
     "date": "0006-06-06",
     "temperature": 6
+  },
+  {
+    "id": 18,
+    "productId": 1,
+    "outletId": 1,
+    "quantity": 3,
+    "date": "0003-03-31",
+    "temperature": 3
+  },
+  {
+    "id": 19,
+    "productId": 1,
+    "outletId": 1,
+    "quantity": 3,
+    "date": "3333-03-31",
+    "temperature": 3
   }
 ]
