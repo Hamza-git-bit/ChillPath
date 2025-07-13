@@ -190,8 +190,8 @@ if (end) {
         <td>${delivery.temperature}</td>
         <td>${status}</td>
         <td>
-  <button data-id="${delivery.id}" class="editBtn">Edit</button>
-  <button data-id="${delivery.id}" class="deleteBtn">Delete</button>
+  <button class="editBtn" data-id="${delivery.id}">Edit</button>
+<button class="deleteBtn" data-id="${delivery.id}">Delete</button>
 </td>
       `;
       if (status === 'At Risk') {
