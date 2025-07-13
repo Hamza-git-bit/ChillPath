@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "description": "Tracking deliveries and cold storage for Dairy Products",
   "main": "server.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.4",
+    "supertest": "^6.3.3"
   }
 }
