@@ -18,7 +18,6 @@ if (productForm) {
       const result = await response.json();
       document.getElementById('productMsg').innerText = result.message || 'Product added.';
       this.reset();
-  
     } catch (error) {
       console.error('Error adding product:', error);
       document.getElementById('productMsg').innerText = 'Failed to add product.';
@@ -89,7 +88,7 @@ async function loadDropdowns() {
       outlets.forEach(o => {
         const option = document.createElement('option');
         option.value = o.id;
-        option.textContent = `${p.name} (${p.unit})`;
+        option.textContent = o.name;
         outletSelect.appendChild(option);
       });
     }
@@ -112,13 +111,13 @@ if (deliveryForm) {
 
     try {
       const method = editingDeliveryId ? 'PUT' : 'POST';
-const url = editingDeliveryId ? `/api/deliveries/${editingDeliveryId}` : '/api/deliveries';
+      const url = editingDeliveryId ? `/api/deliveries/${editingDeliveryId}` : '/api/deliveries';
 
-const response = await fetch(url, {
-  method,
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ productId, outletId, quantity, temperature, date })
-});
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId, outletId, quantity, temperature, date })
+      });
 
       const result = await response.json();
       document.getElementById('deliveryMsg').innerText = result.message || 'Delivery recorded.';
@@ -150,20 +149,15 @@ async function loadDeliveries() {
     const outlets = await outletsRes.json();
     let deliveries = await deliveriesRes.json();
 
-    let filteredDeliveries = deliveries;
+    const start = startDateInput?.value;
+    const end = endDateInput?.value;
 
-// Apply date filter
-const start = startDateInput?.value;
-const end = endDateInput?.value;
-
-if (start) {
-  filteredDeliveries = filteredDeliveries.filter(d => new Date(d.date) >= new Date(start));
-}
-if (end) {
-  filteredDeliveries = filteredDeliveries.filter(d => new Date(d.date) <= new Date(end));
-}
-
-    // Apply filter
+    if (start) {
+      deliveries = deliveries.filter(d => new Date(d.date) >= new Date(start));
+    }
+    if (end) {
+      deliveries = deliveries.filter(d => new Date(d.date) <= new Date(end));
+    }
     if (selectedProductId) {
       deliveries = deliveries.filter(d => d.productId == selectedProductId);
     }
@@ -190,10 +184,11 @@ if (end) {
         <td>${delivery.temperature}</td>
         <td>${status}</td>
         <td>
-  <button class="editBtn" data-id="${delivery.id}">Edit</button>
-<button class="deleteBtn" data-id="${delivery.id}">Delete</button>
-</td>
+          <button class="editBtn" data-id="${delivery.id}">Edit</button>
+          <button class="deleteBtn" data-id="${delivery.id}">Delete</button>
+        </td>
       `;
+
       if (status === 'At Risk') {
         tr.style.color = 'red';
       }
@@ -205,7 +200,7 @@ if (end) {
   }
 }
 
-// ===== DELETE BUTTONS =====
+// ===== DELETE & EDIT BUTTONS =====
 document.addEventListener('click', async function (e) {
   if (e.target.classList.contains('deleteBtn')) {
     const id = e.target.getAttribute('data-id');
@@ -220,26 +215,26 @@ document.addEventListener('click', async function (e) {
       console.error('Delete failed:', err);
     }
   }
+
   if (e.target.classList.contains('editBtn')) {
-  const id = e.target.getAttribute('data-id');
+    const id = e.target.getAttribute('data-id');
+    try {
+      const res = await fetch('/api/deliveries');
+      const data = await res.json();
+      const delivery = data.find(d => d.id == id);
+      if (!delivery) return;
 
-  try {
-    const res = await fetch('/api/deliveries');
-    const data = await res.json();
-    const delivery = data.find(d => d.id == id);
-    if (!delivery) return;
+      document.getElementById('deliveryProduct').value = delivery.productId;
+      document.getElementById('deliveryOutlet').value = delivery.outletId;
+      document.getElementById('deliveryQuantity').value = delivery.quantity;
+      document.getElementById('deliveryTemperature').value = delivery.temperature;
+      document.getElementById('deliveryDate').value = delivery.date;
 
-    document.getElementById('deliveryProduct').value = delivery.productId;
-    document.getElementById('deliveryOutlet').value = delivery.outletId;
-    document.getElementById('deliveryQuantity').value = delivery.quantity;
-    document.getElementById('deliveryTemperature').value = delivery.temperature;
-    document.getElementById('deliveryDate').value = delivery.date;
-
-    editingDeliveryId = delivery.id;
-  } catch (err) {
-    console.error('Edit failed:', err);
+      editingDeliveryId = delivery.id;
+    } catch (err) {
+      console.error('Edit failed:', err);
+    }
   }
-}
 });
 
 // ===== CLEAR BUTTONS =====
@@ -260,6 +255,7 @@ document.getElementById('clearOutletListBtn')?.addEventListener('click', () => {
 document.getElementById('clearDeliveryFormBtn')?.addEventListener('click', () => {
   deliveryForm?.reset();
 });
+
 // ===== DATE RANGE FILTER =====
 const startDateInput = document.getElementById('startDate');
 const endDateInput = document.getElementById('endDate');

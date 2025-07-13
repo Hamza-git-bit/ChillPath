@@ -25,3 +25,6 @@ app.listen(PORT, '0.0.0.0', () => {
 
 app.use('/api/outlets', require('./routes/outlets'));
 app.use('/api/deliveries', require('./routes/deliveries'));
+
+// In app.js or server.js
+app.use(express.static('public')); // if your CSS is inside /public

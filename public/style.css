@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1, h2 {
+  color: #1e1e1e;
+}
+
+section {
+  background: #fff;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+input, select, button {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#deliveryMsg,
+#productMsg,
+#outletMsg {
+  margin-top: 5px;
+  color: green;
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fff;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+thead {
+  background-color: #f0f0f0;
+}
+
+.editBtn,
+.deleteBtn {
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.editBtn {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+}
+
+.deleteBtn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+}
+
+.editBtn:hover {
+  background-color: #e0a800;
+}
+
+.deleteBtn:hover {
+  background-color: #c82333;
+}
