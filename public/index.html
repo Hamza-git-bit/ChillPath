@@ -64,20 +64,20 @@
 
   <hr />
   <section>
-    <h2>Delivery Log</h2>
-    <button id="clearTableBtn">Clear Table View</button>
-
+  <h2>Delivery Log</h2>
+  <div class="filter-bar">
     <label for="filterProduct">Filter by Product:</label>
-    <select id="filterProduct">
-      <option value="">All</option>
-    </select>
+    <select id="filterProduct"><option value="">All</option></select>
 
     <label for="startDate">From:</label>
     <input type="date" id="startDate" />
 
     <label for="endDate">To:</label>
     <input type="date" id="endDate" />
+
     <button id="applyDateFilter">Filter</button>
+    <button id="clearTableBtn">Clear Table View</button>
+  </div>
 
     <table id="deliveryTable" border="1" cellpadding="6">
 
