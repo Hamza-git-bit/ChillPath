@@ -159,17 +159,7 @@ During the development of **ChillPath – Cold Chain Delivery Tracking System**,
 
 ---
 
-### 📚 Attributions and Assistance Sources
-
-| Resource/Tool      | Purpose/How It Was Used                                                                                             | Integration Notes                                                |
-|--------------------|----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| **Express.js Docs**| Routing patterns, middleware setup, and static file handling                                                         | API structure mirrored Express.js best practices                 |
-| **ChatGPT (OpenAI)** | Help understanding advanced logic like dynamic form population, PUT/PATCH differences, validation edge cases       | Responses served as learning support; solutions modified manually |
-| **Jest & Supertest Docs** | Setting up and structuring unit/integration test flows                                                          | Used for test architecture, not code                             |
-
----
-
-### Types of Work Influenced or Informed by Outside Resources
+### Attributions and Types of Work Influenced or Informed by Outside Resources
 
 - **Backend CRUD Design (routing, validation, error handling)**: Guided by Express.js and Chat GPT.
 - **Frontend Logic (fetch APIs, input handling, DOM updates)**: References taken from Chat GPT.
